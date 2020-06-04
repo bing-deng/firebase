@@ -34,7 +34,11 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+        this.googleSignSetting()
 
+    }
+
+    fun googleSignSetting(){
 
         sign_in_button.setOnClickListener(this)
         auth = FirebaseAuth.getInstance()
@@ -56,7 +60,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
 
     }
 
-     fun signIn() {
+     fun googleSignIn() {
          try {
              val signInIntent = googleSignInClient.signInIntent
              startActivityForResult(signInIntent, RC_SIGN_IN)
@@ -156,7 +160,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.sign_in_button -> signIn()
+            R.id.sign_in_button -> googleSignIn()
 
         }
     }
