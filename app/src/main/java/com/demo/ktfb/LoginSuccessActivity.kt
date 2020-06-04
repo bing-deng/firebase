@@ -3,6 +3,7 @@ package com.demo.ktfb
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -13,6 +14,7 @@ import java.lang.Exception
 class LoginSuccessActivity : AppCompatActivity() {
 
     private lateinit var  googleSignInClient: GoogleSignInClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_success)
@@ -34,6 +36,10 @@ class LoginSuccessActivity : AppCompatActivity() {
     fun logout(view: View){
         try {
             googleSignInClient.signOut()
+            FirebaseAuth.getInstance().signOut()
+            // facebook logout
+            LoginManager.getInstance().logOut();
+            finish()
 
         }catch (e: Exception){
             println(e)
